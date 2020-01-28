@@ -5,7 +5,7 @@ from django.db import models
 
 class Organization(models.Model):
 
-    __source__ = "ProjetPython/projet/p1/data/newdataH.csv"
+    __source__ = "pythonProject/Vuesfusionnées/2_actions.csv"
 
     representants_id = models.IntegerField(
         verbose_name='representants_id', primary_key=True)
