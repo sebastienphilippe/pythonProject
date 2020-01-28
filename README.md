@@ -2,9 +2,25 @@
  
 <!-- The goal of this project is to study the lobbying in france -->
 
+# Méthodologie de traitement des données
+
+
+
+# Accès, partage, données croisées
+
+This application will be accessible for all. The goal is to bring as much transparency as possible and to make the data understantable for everyone. 
+User will type the name of the company and find all informations about it.
+
+# Techo / Outils 
+
+# Etudes statistiques, IA
+
+The application will automatically spot the company doing lobbying
+
 # Foobar
 
-Foobar is a Python library for dealing with word pluralization.
+virtualenv is a Python library for dealing with python virtual machines.
+django is a Python library for dealing with web interface.
 
 ## Installation
 
@@ -25,7 +41,7 @@ virtualenv projectName
 After this you need to launch the virtual environnement
 
 ```bash
-    source ./Scripts/activate
+source ./Scripts/activate
 ```
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install django on the virtual environnement.
@@ -61,4 +77,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+Hetic Thomas THIAW-THI, Florent ROUSSETY, Sébastien PHILIPPE
