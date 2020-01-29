@@ -3,7 +3,7 @@ from pythonApp.models import *
 # Register your models here.
 
 admin.site.register(Informations_generales)
-# admin.site.register(Dirigeants)
+admin.site.register(Dirigeants)
 # admin.site.register(Collaborateurs)
 # admin.site.register(Clients)
 # admin.site.register(Affiliations)
