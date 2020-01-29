@@ -4,9 +4,7 @@ from django.db import models
 # import pandas as pd
 # data = pd.read_csv("vueFusionnees/2_actions.csv")
 
-class Organization(models.Model):
-
-    __source__ = "pythonProject/Vuesfusionnées/2_actions.csv"
+class Infogen(models.Model):
 
     representants_id = models.IntegerField(
         verbose_name='representants_id', primary_key=True)
