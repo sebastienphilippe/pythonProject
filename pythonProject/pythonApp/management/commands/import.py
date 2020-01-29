@@ -3,7 +3,6 @@ from django.core.management.base import BaseCommand, CommandError
 from pythonApp.models import * 
 from django.db.models import * 
 import csv
-import pandas as pd
 
 # Dirigeants_2=['civilite_dirigeant','fonction_dirigeant','nom_dirigeant','prenom_dirigeant','representants_id','nom_prenom_dirigeant']
 # Collaborateurs_3=['civilite_collaborateur','fonction_collaborateur','nom_collaborateur','prenom_collaborateur','representants_id','nom_prenom_collaborateur']
