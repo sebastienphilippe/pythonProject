@@ -27,7 +27,7 @@ Organization.objects.all().delete()
 # Dirigeants.objects.all().delete()
 info_gen=['representants_id', 'adresse', 'code_postal', 'derniere_publication_activite', 'date_premiere_publication', 'declaration_organisation_appartenance', 'declaration_tiers', 'denomination', 'identifiant_national','activites_publiees','page_facebook', 'page_linkedin', 'page_twitter', 'site_web','nom_usage_HATVP', 'pays', 'sigle_HATVP', 'type_identifiant_national', 'ville', 'label_categorie_organisation']
 class reader_test():
-    with open("C:/Users/Sebastien/pythonProject/pythonProject/vueFusionnees/1_informations_generales.csv",encoding="utf8") as csvfile:
+    with open("C:\Users\Mikazuki\Desktop\pythonProjectSeb\vueFusionnees\1_informations_generales.csv",encoding="utf8") as csvfile:
         spamreader = csv.reader(csvfile, delimiter=';')
         next(spamreader,None)
         for row in spamreader:
@@ -37,9 +37,9 @@ class reader_test():
             obj.save()
     print("--------------- Fin remplissage reader test ---------------")
 
-# import pandas as pd
-# data = pd.read_csv("vueFusionnees/2_actions.csv")
+import pandas as pd
+data = pd.read_csv('C:\Users\Mikazuki\Desktop\pythonProjectSeb\vueFusionnees\1_informations_generales.csv')
 
-# for a in data: 
-    
-#     Organization.save()
+for a in data: 
+    representants_id = a:data[a]
+    Organization.save(representants_id)
