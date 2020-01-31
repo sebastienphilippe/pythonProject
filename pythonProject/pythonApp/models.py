@@ -6,7 +6,7 @@ from django.db import models
 
 class Informations_generales(models.Model):
 
-    representants_id = models.IntegerField(verbose_name='representants_id', primary_key=True)
+    representants_id = models.CharField(verbose_name='representants_id',max_length=30, primary_key=True)
     adresse = models.CharField( verbose_name='adresse',max_length=30)
     code_postal = models.CharField(verbose_name='code_postal',max_length=30)
     derniere_publication_activite = models.CharField(verbose_name='derniere_publication_activite',max_length=30)
@@ -27,6 +27,8 @@ class Informations_generales(models.Model):
     ville = models.CharField(verbose_name='ville', max_length=30)
     label_categorie_organisation = models.CharField(verbose_name='label_categorie_organisation',max_length=30)
 
+    def __str__(self):
+        return self.representants_id
 
 
 # class Dirigeants(models.Model):
@@ -86,65 +88,65 @@ class Informations_generales(models.Model):
 
 
 
-class Objets_activites(models.Model):
+# class Objets_activites(models.Model):
 
-    activite_id = models.IntegerField(        verbose_name='activite_id', primary_key=True)
-    exercice_id = models.ForeignKey(Exercices, on_delete=models.CASCADE)
-    date_publication_activite =  models.CharField(        verbose_name='date_publication_activite',max_length=30)
-    identifiant_fiche = models.CharField(verbose_name='identifiant_fiche',max_length=30)
-    objet_activite = models.CharField(verbose_name='objet_activite', max_length=30)
+#     activite_id = models.IntegerField(        verbose_name='activite_id', primary_key=True)
+#     exercice_id = models.ForeignKey(Exercices, on_delete=models.CASCADE)
+#     date_publication_activite =  models.CharField(        verbose_name='date_publication_activite',max_length=30)
+#     identifiant_fiche = models.CharField(verbose_name='identifiant_fiche',max_length=30)
+#     objet_activite = models.CharField(verbose_name='objet_activite', max_length=30)
     
 
 
-class Domaines_intervention(models.Model):
+# class Domaines_intervention(models.Model):
 
-    domaineIntervention = models.CharField(        verbose_name='domaineIntervention', max_length=30)
-    activite_id = models.ForeignKey(Objets_activites, on_delete=models.CASCADE)
+#     domaineIntervention = models.CharField(        verbose_name='domaineIntervention', max_length=30)
+#     activite_id = models.ForeignKey(Objets_activites, on_delete=models.CASCADE)
     
 
 
-class Observations(models.Model):
+# class Observations(models.Model):
 
-    action_representation_interet_id = models.IntegerField(        verbose_name='activite_id', primary_key=True)
-    activite_id = models.ForeignKey(Objets_activites, on_delete=models.CASCADE)
-    observation=models.CharField(        verbose_name='domaineIntervention', max_length=30)
+#     action_representation_interet_id = models.IntegerField(        verbose_name='activite_id', primary_key=True)
+#     activite_id = models.ForeignKey(Objets_activites, on_delete=models.CASCADE)
+#     observation=models.CharField(        verbose_name='domaineIntervention', max_length=30)
 
 
-class Decisions_concernees(models.Model):
+# class Decisions_concernees(models.Model):
 
-    decision_concerne = models.IntegerField(      verbose_name='activite_id', primary_key=True)
-    action_representation_interet_id = models.ForeignKey(Observations, on_delete=models.CASCADE)
+#     decision_concerne = models.IntegerField(      verbose_name='activite_id', primary_key=True)
+#     action_representation_interet_id = models.ForeignKey(Observations, on_delete=models.CASCADE)
    
 
 
 
 
-class Beneficiaires(models.Model):  
+# class Beneficiaires(models.Model):  
 
-    beneficiaire_action_menee = models.CharField(verbose_name='beneficiaire_action_menee', max_length=30)
-    action_representation_interet_id = models.ForeignKey(Observations, on_delete=models.CASCADE)
-    action_menee_en_propre = models.CharField(verbose_name='action_menee_en_propre',max_length=30)
-
-
-class Actions_menees(models.Model):  
-
-    action_menee = models.CharField(verbose_name='action_menee', max_length=30)
-    action_representation_interet_id = models.ForeignKey(Observations, on_delete=models.CASCADE)
-    action_menee_autre = models.CharField(verbose_name='action_menee_autre',max_length=30)
+#     beneficiaire_action_menee = models.CharField(verbose_name='beneficiaire_action_menee', max_length=30)
+#     action_representation_interet_id = models.ForeignKey(Observations, on_delete=models.CASCADE)
+#     action_menee_en_propre = models.CharField(verbose_name='action_menee_en_propre',max_length=30)
 
 
-# class Secteur_activites(models.Model):  
+# class Actions_menees(models.Model):  
 
-#     secteur_activite = models.CharField(verbose_name='secteur_activite', max_length=30)
-#     representants_id = models.ForeignKey(Informations_generales, on_delete=models.CASCADE)
+#     action_menee = models.CharField(verbose_name='action_menee', max_length=30)
+#     action_representation_interet_id = models.ForeignKey(Observations, on_delete=models.CASCADE)
+#     action_menee_autre = models.CharField(verbose_name='action_menee_autre',max_length=30)
 
 
-class Ministeres_aai_api(models.Model):  
+# # class Secteur_activites(models.Model):  
 
-    action_representation_interet_id = models.ForeignKey(Observations, on_delete=models.CASCADE)
-    responsable_public =  models.CharField(verbose_name='responsable_public',max_length=30)
-    departement_ministeriel = models.CharField(verbose_name='departement_ministeriel',max_length=30)
-    responsable_public_ou_dpt_ministeriel_autre = models.CharField(verbose_name='responsable_public_ou_dpt_ministeriel_autre',max_length=30)
+# #     secteur_activite = models.CharField(verbose_name='secteur_activite', max_length=30)
+# #     representants_id = models.ForeignKey(Informations_generales, on_delete=models.CASCADE)
 
-def __str__(self):
-    return self.ref
+
+# class Ministeres_aai_api(models.Model):  
+
+#     action_representation_interet_id = models.ForeignKey(Observations, on_delete=models.CASCADE)
+#     responsable_public =  models.CharField(verbose_name='responsable_public',max_length=30)
+#     departement_ministeriel = models.CharField(verbose_name='departement_ministeriel',max_length=30)
+#     responsable_public_ou_dpt_ministeriel_autre = models.CharField(verbose_name='responsable_public_ou_dpt_ministeriel_autre',max_length=30)
+
+# def __str__(self):
+#     return self.ref

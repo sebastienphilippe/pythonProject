@@ -1,5 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.db.models import *
+from django.template import loader
+from .models import Informations_generales
 
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
@@ -16,3 +19,11 @@ def project(request):
         </form>
 
     """)
+
+def test(request):
+    info = Informations_generales.objects.values('denomination').order_by('denomination')
+    template='pythonApp/hey.html'
+    context = {
+        'info':info
+    }
+    return render(request,template,context)

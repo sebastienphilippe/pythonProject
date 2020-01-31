@@ -9,33 +9,33 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        # Informations_generales.objects.all().delete()
+        Informations_generales.objects.all().delete()
         # Dirigeants.objects.all().delete()
         # Collaborateurs.objects.all().delete()
         # Clients.objects.all().delete()
         # Affiliations.objects.all().delete()
         # Niveaux_intervention.objects.all().delete()
-        Exercices.objects.all().delete()
-        Objets_activites.objects.all().delete()
-        Domaines_intervention.objects.all().delete()
-        Observations.objects.all().delete()
-        Decisions_concernees.objects.all().delete()
-        Beneficiaires.objects.all().delete()
-        Actions_menees.objects.all().delete()
+        # Exercices.objects.all().delete()
+        # Objets_activites.objects.all().delete()
+        # Domaines_intervention.objects.all().delete()
+        # Observations.objects.all().delete()
+        # Decisions_concernees.objects.all().delete()
+        # Beneficiaires.objects.all().delete()
+        # Actions_menees.objects.all().delete()
         # Secteur_activites.objects.all().delete()
-        Ministeres_aai_api.objects.all().delete()
+        # Ministeres_aai_api.objects.all().delete()
 
 
-        # info_gen=['representants_id', 'adresse', 'code_postal', 'derniere_publication_activite', 'date_premiere_publication', 'declaration_organisation_appartenance', 'declaration_tiers', 'denomination', 'identifiant_national','activites_publiees','page_facebook', 'page_linkedin', 'page_twitter', 'site_web','nom_usage_HATVP', 'pays', 'sigle_HATVP', 'type_identifiant_national', 'ville', 'label_categorie_organisation']
-        # with open("C:\\Users\\THIAW-THI\\Desktop\\pythonProject\\pythonProject\\vueFusionnees\\1_Informations_generales.csv",encoding="utf8") as csvfile:
-        #     spamreader = csv.reader(csvfile, delimiter=';')
-        #     next(spamreader,None)
-        #     for row in spamreader:
-        #         obj = Informations_generales()
-        #         for tab in range(len(info_gen)):
-        #             setattr(obj, info_gen[tab],row[tab])
-        #         obj.save()
-        # print("--------------- Fin remplissage reader test ---------------")
+        info_gen=['representants_id', 'adresse', 'code_postal', 'derniere_publication_activite', 'date_premiere_publication', 'declaration_organisation_appartenance', 'declaration_tiers', 'denomination', 'identifiant_national','activites_publiees','page_facebook', 'page_linkedin', 'page_twitter', 'site_web','nom_usage_HATVP', 'pays', 'sigle_HATVP', 'type_identifiant_national', 'ville', 'label_categorie_organisation']
+        with open("C:\\Users\\Sebastien\\pythonProject\\pythonProject\\vueFusionnees\\1_Informations_generales.csv",encoding="utf8") as csvfile:
+            spamreader = csv.reader(csvfile, delimiter=';')
+            next(spamreader,None)
+            for row in spamreader:
+                obj = Informations_generales()
+                for tab in range(len(info_gen)):
+                    setattr(obj, info_gen[tab],row[tab])
+                obj.save()
+        print("--------------- Fin remplissage reader test ---------------")
        
         
         # Dirigeants_2=['civilite_dirigeant','fonction_dirigeant','nom_dirigeant','prenom_dirigeant','representants_id','nom_prenom_dirigeant']
@@ -116,111 +116,111 @@ class Command(BaseCommand):
         #         obj.save()  
         # print("--------------- Fin remplissage reader test ---------------")
 
-        object_activite=['activite_id','exercices_id','date_publication_activite','identifiant_fiche','objet_activite']
-        with open("C:\\Users\\THIAW-THI\\Desktop\\pythonProject\\pythonProject\\vueFusionnees\\8_Objets_activites.csv",encoding="utf8") as csvfile:
-            spamreader = csv.reader(csvfile, delimiter=';')
-            next(spamreader,None)
-            for row in spamreader:
-                obj = Objets_activites()
-                for tab in range(len(object_activite)):
-                    if(object_activite[tab] == 'exercices_id'):
-                        row[tab] = Exercices.objects.get(**{exercices_id = row[tab]})
-                    setattr(obj,object_activite[tab],row[tab])
-                obj.save()  
-        print("--------------- Fin remplissage reader test ---------------")
-
-        domaine_intervention=['domaines_intervention_actions_menees','activite_id']
-        with open("C:\\Users\\THIAW-THI\\Desktop\\pythonProject\\pythonProject\\vueFusionnees\\9_Domaines_intervention.csv",encoding="utf8") as csvfile:
-            spamreader = csv.reader(csvfile, delimiter=';')
-            next(spamreader,None)
-            for row in spamreader:
-                obj = Domaines_intervention()
-                for tab in range(len(domaine_intervention)):
-                    if(domaine_intervention[tab] == 'activite_id'):
-                        row[tab] = Objets_activites.objects.get(activite_id = row[tab])
-                    setattr(obj,domaine_intervention[tab],row[tab])
-                obj.save()  
-        print("--------------- Fin remplissage reader test ---------------")
-
-        observation=['action_representation_interet_id','activite_id','observation']
-        with open("C:\\Users\\THIAW-THI\\Desktop\\pythonProject\\pythonProject\\vueFusionnees\\10_Observations.csv",encoding="utf8") as csvfile:
-            spamreader = csv.reader(csvfile, delimiter=';')
-            next(spamreader,None)
-            for row in spamreader:
-                obj = Observations()
-                for tab in range(len(observation)):
-                    if(observation[tab] == 'activite_id'):
-                        row[tab] = Objets_activites.objects.get(activite_id = row[tab])
-                    setattr(obj,observation[tab],row[tab])
-                obj.save()  
-        print("--------------- Fin remplissage reader test ---------------")
-
-        decision_concerne=['decision_concernee','action_representation_interet_id']
-        with open("C:\\Users\\THIAW-THI\\Desktop\\pythonProject\\pythonProject\\vueFusionnees\\11_Decisions_concernees.csv",encoding="utf8") as csvfile:
-            spamreader = csv.reader(csvfile, delimiter=';')
-            next(spamreader,None)
-            for row in spamreader:
-                obj = Decisions_concernees()
-                for tab in range(len(decision_concerne)):
-                    if(decision_concerne[tab] == 'activite_id'):
-                        row[tab] = Observations.objects.get(action_representation_interet_id = row[tab])
-                    setattr(obj,decision_concerne[tab],row[tab])
-                obj.save()  
-        print("--------------- Fin remplissage reader test ---------------")
-
-        benef=['beneficiaire_action_menee','action_representation_interet_id','action_menee_en_propre']
-        with open("C:\\Users\\THIAW-THI\\Desktop\\pythonProject\\pythonProject\\vueFusionnees\\12_Beneficiaires.csv",encoding="utf8") as csvfile:
-            spamreader = csv.reader(csvfile, delimiter=';')
-            next(spamreader,None)
-            for row in spamreader:
-                obj = Beneficiaires()
-                for tab in range(len(benef)):
-                    if(benef[tab] == 'activite_id'):
-                        row[tab] = Observations.objects.get(action_representation_interet_id = row[tab])
-                    setattr(obj,benef[tab],row[tab])
-                obj.save()  
-        print("--------------- Fin remplissage reader test ---------------")
-
-        action_menee=['action_menee','action_representation_interet_id','action_menee_autre']
-        with open("C:\\Users\\THIAW-THI\\Desktop\\pythonProject\\pythonProject\\vueFusionnees\\13_Actions_menees.csv",encoding="utf8") as csvfile:
-            spamreader = csv.reader(csvfile, delimiter=';')
-            next(spamreader,None)
-            for row in spamreader:
-                obj = Actions_menees()
-                for tab in range(len(action_menee)):
-                    if(action_menee[tab] == 'activite_id'):
-                        row[tab] = Observations.objects.get(action_representation_interet_id = row[tab])
-                    setattr(obj,action_menee[tab],row[tab])
-                obj.save()  
-        print("--------------- Fin remplissage reader test ---------------")
-
-
-        # sect_act=['secteur_activite','representants_id']
-        # with open("C:\\Users\\THIAW-THI\\Desktop\\pythonProject\\pythonProject\\vueFusionnees\\14_Secteur_activites.csv",encoding="utf8") as csvfile:
+        # object_activite=['activite_id','exercices_id','date_publication_activite','identifiant_fiche','objet_activite']
+        # with open("C:\\Users\\THIAW-THI\\Desktop\\pythonProject\\pythonProject\\vueFusionnees\\8_Objets_activites.csv",encoding="utf8") as csvfile:
         #     spamreader = csv.reader(csvfile, delimiter=';')
         #     next(spamreader,None)
         #     for row in spamreader:
-        #         obj = Secteur_activites()
-        #         for tab in range(len(sect_act)):
-        #             if(sect_act[tab] == 'representants_id'):
-        #                row[tab] = Informations_generales.objects.get(**{"representants_id": row[tab]})
-        #             setattr(obj, sect_act[tab],row[tab])
+        #         obj = Objets_activites()
+        #         for tab in range(len(object_activite)):
+        #             if(object_activite[tab] == 'exercices_id'):
+        #                 row[tab] = Exercices.objects.get(**{exercices_id : row[tab]})
+        #             setattr(obj,object_activite[tab],row[tab])
+        #         obj.save()  
+        # print("--------------- Fin remplissage reader test ---------------")
+
+        # domaine_intervention=['domaines_intervention_actions_menees','activite_id']
+        # with open("C:\\Users\\THIAW-THI\\Desktop\\pythonProject\\pythonProject\\vueFusionnees\\9_Domaines_intervention.csv",encoding="utf8") as csvfile:
+        #     spamreader = csv.reader(csvfile, delimiter=';')
+        #     next(spamreader,None)
+        #     for row in spamreader:
+        #         obj = Domaines_intervention()
+        #         for tab in range(len(domaine_intervention)):
+        #             if(domaine_intervention[tab] == 'activite_id'):
+        #                 row[tab] = Objets_activites.objects.get(activite_id = row[tab])
+        #             setattr(obj,domaine_intervention[tab],row[tab])
+        #         obj.save()  
+        # print("--------------- Fin remplissage reader test ---------------")
+
+        # observation=['action_representation_interet_id','activite_id','observation']
+        # with open("C:\\Users\\THIAW-THI\\Desktop\\pythonProject\\pythonProject\\vueFusionnees\\10_Observations.csv",encoding="utf8") as csvfile:
+        #     spamreader = csv.reader(csvfile, delimiter=';')
+        #     next(spamreader,None)
+        #     for row in spamreader:
+        #         obj = Observations()
+        #         for tab in range(len(observation)):
+        #             if(observation[tab] == 'activite_id'):
+        #                 row[tab] = Objets_activites.objects.get(activite_id = row[tab])
+        #             setattr(obj,observation[tab],row[tab])
+        #         obj.save()  
+        # print("--------------- Fin remplissage reader test ---------------")
+
+        # decision_concerne=['decision_concernee','action_representation_interet_id']
+        # with open("C:\\Users\\THIAW-THI\\Desktop\\pythonProject\\pythonProject\\vueFusionnees\\11_Decisions_concernees.csv",encoding="utf8") as csvfile:
+        #     spamreader = csv.reader(csvfile, delimiter=';')
+        #     next(spamreader,None)
+        #     for row in spamreader:
+        #         obj = Decisions_concernees()
+        #         for tab in range(len(decision_concerne)):
+        #             if(decision_concerne[tab] == 'activite_id'):
+        #                 row[tab] = Observations.objects.get(action_representation_interet_id = row[tab])
+        #             setattr(obj,decision_concerne[tab],row[tab])
+        #         obj.save()  
+        # print("--------------- Fin remplissage reader test ---------------")
+
+        # benef=['beneficiaire_action_menee','action_representation_interet_id','action_menee_en_propre']
+        # with open("C:\\Users\\THIAW-THI\\Desktop\\pythonProject\\pythonProject\\vueFusionnees\\12_Beneficiaires.csv",encoding="utf8") as csvfile:
+        #     spamreader = csv.reader(csvfile, delimiter=';')
+        #     next(spamreader,None)
+        #     for row in spamreader:
+        #         obj = Beneficiaires()
+        #         for tab in range(len(benef)):
+        #             if(benef[tab] == 'activite_id'):
+        #                 row[tab] = Observations.objects.get(action_representation_interet_id = row[tab])
+        #             setattr(obj,benef[tab],row[tab])
+        #         obj.save()  
+        # print("--------------- Fin remplissage reader test ---------------")
+
+        # action_menee=['action_menee','action_representation_interet_id','action_menee_autre']
+        # with open("C:\\Users\\THIAW-THI\\Desktop\\pythonProject\\pythonProject\\vueFusionnees\\13_Actions_menees.csv",encoding="utf8") as csvfile:
+        #     spamreader = csv.reader(csvfile, delimiter=';')
+        #     next(spamreader,None)
+        #     for row in spamreader:
+        #         obj = Actions_menees()
+        #         for tab in range(len(action_menee)):
+        #             if(action_menee[tab] == 'activite_id'):
+        #                 row[tab] = Observations.objects.get(action_representation_interet_id = row[tab])
+        #             setattr(obj,action_menee[tab],row[tab])
         #         obj.save()  
         # print("--------------- Fin remplissage reader test ---------------")
 
 
-        minister_ai=['action_representation_interet_id','responsable_public','departement_ministeriel','responsable_public_ou_dpt_ministeriel_autre']
-        with open("C:\\Users\\THIAW-THI\\Desktop\\pythonProject\\pythonProject\\vueFusionnees\\15_Ministeres_aai_api.csv",encoding="utf8") as csvfile:
-            spamreader = csv.reader(csvfile, delimiter=';')
-            next(spamreader,None)
-            for row in spamreader:
-                obj = Ministeres_aai_api()
-                for tab in range(len(minister_ai)):
-                    if(minister_ai[tab] == 'activite_id'):
-                        row[tab] = Observations.objects.get(action_representation_interet_id = row[tab])
-                    setattr(obj,minister_ai[tab],row[tab])
-                obj.save()  
-        print("--------------- Fin remplissage reader test ---------------")
+        # # sect_act=['secteur_activite','representants_id']
+        # # with open("C:\\Users\\THIAW-THI\\Desktop\\pythonProject\\pythonProject\\vueFusionnees\\14_Secteur_activites.csv",encoding="utf8") as csvfile:
+        # #     spamreader = csv.reader(csvfile, delimiter=';')
+        # #     next(spamreader,None)
+        # #     for row in spamreader:
+        # #         obj = Secteur_activites()
+        # #         for tab in range(len(sect_act)):
+        # #             if(sect_act[tab] == 'representants_id'):
+        # #                row[tab] = Informations_generales.objects.get(**{"representants_id": row[tab]})
+        # #             setattr(obj, sect_act[tab],row[tab])
+        # #         obj.save()  
+        # # print("--------------- Fin remplissage reader test ---------------")
+
+
+        # minister_ai=['action_representation_interet_id','responsable_public','departement_ministeriel','responsable_public_ou_dpt_ministeriel_autre']
+        # with open("C:\\Users\\THIAW-THI\\Desktop\\pythonProject\\pythonProject\\vueFusionnees\\15_Ministeres_aai_api.csv",encoding="utf8") as csvfile:
+        #     spamreader = csv.reader(csvfile, delimiter=';')
+        #     next(spamreader,None)
+        #     for row in spamreader:
+        #         obj = Ministeres_aai_api()
+        #         for tab in range(len(minister_ai)):
+        #             if(minister_ai[tab] == 'activite_id'):
+        #                 row[tab] = Observations.objects.get(action_representation_interet_id = row[tab])
+        #             setattr(obj,minister_ai[tab],row[tab])
+        #         obj.save()  
+        # print("--------------- Fin remplissage reader test ---------------")
 
 
 
