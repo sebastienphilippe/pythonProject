@@ -21,9 +21,11 @@ def project(request):
     """)
 
 def test(request):
-    info = Informations_generales.objects.values('denomination').order_by('denomination')
+    info = Informations_generales.objects.values().order_by('denomination')
+    denom = info
     template='pythonApp/hey.html'
     context = {
-        'info':info
+        'info':info,
+        # 'denom':denom
     }
     return render(request,template,context)
